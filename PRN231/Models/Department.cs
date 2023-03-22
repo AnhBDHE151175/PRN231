@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 namespace PRN231.Models;
 
-public partial class Department
+public partial class Department : BaseEntity
 {
-    public int DepartmentId { get; set; }
 
     public string DepartmentName { get; set; } = null!;
 
     public int? LocationId { get; set; }
 
-    public virtual ICollection<Employee> Employees { get; } = new List<Employee>();
+    //public virtual ICollection<Employee> Employees { get; } = new List<Employee>();
 
-    public virtual Location? Location { get; set; }
+    //public virtual Location? Location { get; set; }
 }

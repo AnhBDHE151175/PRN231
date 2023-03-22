@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace PRN231.Models;
 
-public partial class Employee
+public partial class Employee : BaseEntity
 {
-    public int EmployeeId { get; set; }
 
     public string? FirstName { get; set; }
 
@@ -25,13 +24,13 @@ public partial class Employee
 
     public int? DepartmentId { get; set; }
 
-    public virtual Department? Department { get; set; }
+    //public virtual Department? Department { get; set; }
 
-    public virtual ICollection<Dependent> Dependents { get; } = new List<Dependent>();
+    //public virtual ICollection<Dependent> Dependents { get; } = new List<Dependent>();
 
-    public virtual ICollection<Employee> InverseManager { get; } = new List<Employee>();
+    //public virtual ICollection<Employee> InverseManager { get; } = new List<Employee>();
 
-    public virtual Job Job { get; set; } = null!;
+    //public virtual Job Job { get; set; } = null!;
 
-    public virtual Employee? Manager { get; set; }
+    //public virtual Employee? Manager { get; set; }
 }

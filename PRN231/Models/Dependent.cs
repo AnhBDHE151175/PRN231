@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace PRN231.Models;
 
-public partial class Dependent
+public partial class Dependent : BaseEntity
 {
-    public int DependentId { get; set; }
 
     public string FirstName { get; set; } = null!;
 
@@ -15,5 +14,5 @@ public partial class Dependent
 
     public int EmployeeId { get; set; }
 
-    public virtual Employee Employee { get; set; } = null!;
+    //public virtual Employee Employee { get; set; } = null!;
 }

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace PRN231.Models;
 
-public partial class Location
+public partial class Location : BaseEntity
 {
-    public int LocationId { get; set; }
 
     public string? StreetAddress { get; set; }
 
@@ -15,9 +14,9 @@ public partial class Location
 
     public string? StateProvince { get; set; }
 
-    public string CountryId { get; set; } = null!;
+    public int CountryId { get; set; }
 
-    public virtual Country Country { get; set; } = null!;
+    //public virtual Country Country { get; set; } = null!;
 
-    public virtual ICollection<Department> Departments { get; } = new List<Department>();
+    //public virtual ICollection<Department> Departments { get; } = new List<Department>();
 }
