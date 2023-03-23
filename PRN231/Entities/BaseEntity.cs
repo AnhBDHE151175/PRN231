@@ -1,4 +1,4 @@
-﻿namespace PRN231.Models
+﻿namespace PRN231.Entities
 {
     public class BaseEntity
     {

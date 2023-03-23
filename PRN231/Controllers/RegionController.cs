@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PRN231.Models;
+using PRN231.Entities;
 using PRN231.Services;
 
 namespace PRN231.Controllers

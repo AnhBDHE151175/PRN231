@@ -1,5 +1,5 @@
 ﻿using PRN231.DTOs.ResponseModels;
-using PRN231.Models;
+using PRN231.Entities;
 
 namespace PRN231.Interfaces
 {

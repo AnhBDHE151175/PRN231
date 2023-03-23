@@ -1,11 +1,12 @@
-using PRN231.Models;
+
+using PRN231.Entities;
 using PRN231.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddScoped<Prn231Context>();
+builder.Services.AddScoped<ApplicationContext>();
 builder.Services.AddScoped<RegionService>();
 
 

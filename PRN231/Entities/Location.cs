@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PRN231.Models;
+namespace PRN231.Entities;
 
 public partial class Location : BaseEntity
 {
@@ -16,7 +16,7 @@ public partial class Location : BaseEntity
 
     public int CountryId { get; set; }
 
-    //public virtual Country Country { get; set; } = null!;
+    public virtual Country Country { get; set; } = null!;
 
-    //public virtual ICollection<Department> Departments { get; } = new List<Department>();
+    public virtual ICollection<Department> Departments { get; } = new List<Department>();
 }

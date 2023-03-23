@@ -1,15 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PRN231.DTOs.Enum;
 using PRN231.DTOs.ResponseModels;
+using PRN231.Entities;
 using PRN231.Interfaces;
-using PRN231.Models;
 
 namespace PRN231.Services
 {
     public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : BaseEntity
     {
-        public readonly Prn231Context _context;
-        public BaseService(Prn231Context context)
+        public readonly ApplicationContext _context;
+        public BaseService(ApplicationContext context)
         {
             this._context = context;
         }
