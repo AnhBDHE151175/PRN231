@@ -7,7 +7,6 @@ namespace PRN231_UI.Controllers
     public class DepartmentController : Controller
     {
 
-
         public IActionResult Index()
         {
             return View();
