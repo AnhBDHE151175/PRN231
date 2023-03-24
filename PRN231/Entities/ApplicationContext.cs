@@ -38,8 +38,13 @@ public partial class ApplicationContext : DbContext
     public virtual DbSet<Stage> Stages { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("server=(local); database=PRN231; uid=sa; pwd=12345; Encrypt=False;");
+    {
+        var builder = new ConfigurationBuilder()
+                  .SetBasePath(Directory.GetCurrentDirectory())
+                  .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+        IConfigurationRoot configuration = builder.Build();
+        optionsBuilder.UseSqlServer(configuration.GetConnectionString("PRN231DB"));
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -219,10 +224,10 @@ public partial class ApplicationContext : DbContext
             entity.Property(e => e.SkillId).HasColumnName("skill_id");
             entity.Property(e => e.ExpYear).HasColumnName("exp_year");
 
-            entity.HasOne(d => d.Job).WithMany(p => p.JobsSkills)
-                .HasForeignKey(d => d.JobId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_jobs_skill_jobs");
+            //entity.HasOne(d => d.Job).WithMany(p => p.JobsSkills)
+            //    .HasForeignKey(d => d.JobId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK_jobs_skill_jobs");
 
             entity.HasOne(d => d.Skill).WithMany(p => p.JobsSkills)
                 .HasForeignKey(d => d.SkillId)

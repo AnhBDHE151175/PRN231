@@ -8,28 +8,28 @@ namespace PRN231.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class RegionController : ControllerBase
+    public class SkillController : ControllerBase
     {
-        private RegionService service;
+        private SkillService service;
 
-        public RegionController(RegionService service)
+        public SkillController(SkillService service)
         {
             this.service = service;
         }
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<Region> GetByID(int id)
+        public async Task<Skill> GetByID(int id)
         {
             return await service.GetByID(id);
         }
         [HttpPost]
-        public async Task<Response> Insert(Region entity)
+        public async Task<Response> Insert(Skill entity)
         {
             return await service.Insert(entity);
         }
         [HttpPost]
-        public async Task<Response> Update(Region entity)
+        public async Task<Response> Update(Skill entity)
         {
             return await service.Update(entity);
         }

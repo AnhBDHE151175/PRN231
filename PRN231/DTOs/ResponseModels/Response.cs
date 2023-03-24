@@ -22,4 +22,21 @@ namespace PRN231.DTOs.ResponseModels
     {
         public T Data { get; set; }
     }
+
+    public class JobResponse
+    {
+        public int ID { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
+
+        public DateTime? ExpiredDate { get; set; }
+
+        public string JobTitle { get; set; } = null!;
+
+        public decimal? MinSalary { get; set; }
+
+        public decimal? MaxSalary { get; set; }
+
+        public string? Skills { get; set; }
+    }
 }

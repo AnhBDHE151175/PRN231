@@ -18,5 +18,4 @@ public partial class Job : BaseEntity
 
     public virtual ICollection<Candidate> Candidates { get; } = new List<Candidate>();
 
-    public virtual ICollection<JobsSkill> JobsSkills { get; } = new List<JobsSkill>();
 }
