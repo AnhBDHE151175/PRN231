@@ -12,5 +12,14 @@
 
 
 
+        public const string COUNTRY_API = "/Countries";
+
+        public const string DEPARTMENT_API = "/Departments";
+
+        public const string INTERVIEWER_API = "/Interviewers";
+
+        public const string LOCATION_API = "/Locations";
+
+        public const string REGION_API = "/Regions";
     }
 }
