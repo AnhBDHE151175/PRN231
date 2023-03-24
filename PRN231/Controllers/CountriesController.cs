@@ -23,7 +23,7 @@ namespace PRN231.Controllers
 
         // GET: api/Countries
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Country>>> GetCountries(string name)
+        public async Task<ActionResult<IEnumerable<Country>>> GetCountries(string? name)
         {
           if (_context.Countries == null)
           {
