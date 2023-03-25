@@ -21,14 +21,43 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
+                <form method="post" action="/job/insert">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Job Title</label>
+                        <input name="jobTitle" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter...">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Min Salary</label>
+                        <input name="min" type="number" class="form-control" id="exampleFormControlInput2" placeholder="Enter...">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Max Salary</label>
+                        <input name="max" type="number" class="form-control" id="exampleFormControlInput3" placeholder="Enter...">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput4" class="form-label">Expired Date</label>
+                        <input name="expiredDate" type="date" class="form-control" id="exampleFormControlInput4">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Skills</label>
+                        @{
+                            foreach (var item in ViewBag.Data)
+                            {
+                                <div class="form-check">
+                                    <input name="skills" class="form-check-input" type="checkbox" value="@item.Id" id="@item.Id">
+                                    <label class="form-check-label" for="@item.Id">
+                                        @item.Name
+                                    </label>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div style="display:flex; justify-content:center">
+                        <button type="submit" class="btn btn-success">Save</button>
+
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>

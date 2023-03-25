@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using PRN231.Entities;
+using System.ComponentModel;
 
 namespace PRN231.DTOs.RequestModels
 {
@@ -24,5 +25,10 @@ namespace PRN231.DTOs.RequestModels
         public string? OrderBy { get; set; } = "desc";
         [DefaultValue("")]
         public string? Keyword { get; set; } = "";
+    }
+    public class JobRequest
+    {
+        public Job? job { get; set; }
+        public string? listSkills { get; set; }
     }
 }
