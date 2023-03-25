@@ -31,6 +31,7 @@
                             <th>Skills Require</th>
                             <th>CreatedDate</th>
                             <th>ExpiredDate</th>
+                            <th></th>
                         </tr>
                     </thead>
 
@@ -46,6 +47,12 @@
                                     <td>@item.Skills</td>
                                     <td>@item.CreatedDate</td>
                                     <td>@item.ExpiredDate</td>
+                                    <td>
+                                        <a href="/job/update?id=@item.ID">
+                                            <i class="fa-solid fa-pen-to-square" style="color: #005eff;"></i>
+                                        </a>
+                                        <a href="/job/delete?id=@item.ID"><i class="fa-solid fa-trash" style="color: #ff0000;"></i></a>
+                                    </td>
                                 </tr>
                             }
                         }

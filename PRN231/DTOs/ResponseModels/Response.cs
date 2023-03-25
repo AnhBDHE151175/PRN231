@@ -1,4 +1,5 @@
 ﻿using PRN231.DTOs.Enum;
+using PRN231.Entities;
 
 namespace PRN231.DTOs.ResponseModels
 {
@@ -36,6 +37,11 @@ namespace PRN231.DTOs.ResponseModels
         public decimal? MinSalary { get; set; }
 
         public decimal? MaxSalary { get; set; }
+
+        public string? Skills { get; set; }
+    }
+    public class JobByIdResponse : Job
+    {
 
         public string? Skills { get; set; }
     }

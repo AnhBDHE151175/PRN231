@@ -16,6 +16,7 @@ public partial class Job : BaseEntity
 
     public decimal? MaxSalary { get; set; }
 
+
     public virtual ICollection<Candidate> Candidates { get; } = new List<Candidate>();
 
 }
