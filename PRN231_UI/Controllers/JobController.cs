@@ -30,7 +30,7 @@ namespace PRN231_UI.Controllers
 
             StringContent content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
             HttpResponseMessage response = client.PostAsync(client.BaseAddress + Constants.JOB_GETALL, content).Result;
-            
+
             var dataString = response.Content.ReadAsStringAsync().Result;
             var dataObject = JsonConvert.DeserializeObject<ListDataOutput<JobResponse>>(dataString);
             if (!dataObject.IsError)
@@ -40,6 +40,10 @@ namespace PRN231_UI.Controllers
             return View();
         }
 
+        public IActionResult Update()
+        {
 
+            return View();
+        }
     }
 }
