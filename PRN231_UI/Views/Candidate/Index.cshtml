@@ -3,6 +3,7 @@
 *@
 @{
 }
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -14,7 +15,7 @@
             <div class="row">
                 <div class="col-6 input-group" style="float: right;">
                     <div class="form-outline">
-                        <input type="search" id="department-search" class="form-control" placeholder="Search..." value="@ViewData["SearchName"]" />
+                        <input type="search" id="candidate-search" class="form-control" placeholder="Search..." value="@ViewData["SearchName"]" />
                     </div>
                     <button type="button" class="btn btn-primary">
                         <i class="fas fa-search"></i>
@@ -58,9 +59,9 @@
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
-                            @for (int i = 1; i < ViewBag.TotalPage; i++)
+                            @for (int i = 1; i <= ViewBag.TotalPage; i++)
                             {
-                                <li class="page-item"><a class="page-link" href="#">@i</a></li>
+                                <li class="page-item" @(ViewBag.Current == i ? "selected" : "" )><a class="page-link" href="#">@i</a></li>
                             }
                             <li>
                                 <a class="page-link" href="#" aria-label="Next">
@@ -77,19 +78,20 @@
 </div>
 <!-- /.container-fluid -->
 <script>
-    $(document).ready(function () {
+    $(function () {
         $('button').click(function () {
-            var name = $('#department-search').val();
-            window.location.href = "/department?name=" + name;
+            var name = $('#candidate-search').val();
+            window.location.href = "/candidate?name=" + name;
         });
-
-        $('#page-item').click(function () {
-            var name = $('#department-search').val();
-            var pageIndex = $(this '.page-link').text();
+        $('.page-item').click(function () {
+            var name = $('#candidate-search').val();
+            var pageIndex = $(this).text();
 
             console.log(name);
             console.log(pageIndex);
-            window.location.href = "/department";
+            window.location.href = "/candidate?name=" + name + "&pageIndex=" + pageIndex;
         });
     });
+
+
 </script>

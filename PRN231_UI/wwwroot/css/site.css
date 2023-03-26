@@ -5029,7 +5029,9 @@ input[type="button"].btn-block {
     border-top-right-radius: 0.35rem;
     border-bottom-right-radius: 0.35rem;
 }
-
+.page-item[selected]{
+    background-color: beige;
+}
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
