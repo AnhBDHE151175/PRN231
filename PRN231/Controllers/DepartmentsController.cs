@@ -29,12 +29,8 @@ namespace PRN231.Controllers
             {
                 return NotFound();
             }
-            var data = await _context.Departments.ToListAsync();
-            if (!string.IsNullOrEmpty(name))
-            {
-                data = data.Where(o => o.Equals(name)).ToList();
-            }
-            return data;
+            var result = _context.Departments.Include(x => x.Location).AsQueryable().Where(x => name.IsNullOrEmpty() || x.DepartmentName.ToLower().Contains(name.ToLower()));
+            return await result.ToListAsync();
         }
 
         // GET: api/Departments/5

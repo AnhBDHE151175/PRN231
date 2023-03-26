@@ -33,6 +33,7 @@ namespace PRN231_UI.Controllers
                 products = JsonSerializer.Deserialize<List<Country>>(data, options);
             }
 
+            ViewData["key"] = name;
             return View(products);
         }
         public IActionResult Update()

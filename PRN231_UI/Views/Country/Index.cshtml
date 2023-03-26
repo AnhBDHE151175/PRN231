@@ -7,19 +7,20 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-    <p class="mb-4">
-        DataTables is a third party plugin that is used to generate the demo table below.
-        For more information about DataTables, please visit the <a target="_blank"
-                                                                   href="https://datatables.net">official DataTables documentation</a>.
-    </p>
+    <h1 class="h3 mb-2 text-gray-800">Countries</h1>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary" style="display:flex;justify-content:flex-end;">
-                <a class="btn btn-primary" href="/country/update">Create</a>
-            </h6>
+        <div class="card-header py-3 row">
+            <h6 class="col-6 m-0 font-weight-bold text-primary">List of countries</h6>
+            <div class="col-6 input-group" style="float: right;">
+                <div class="form-outline">
+                    <input type="search" id="country-search" class="form-control" placeholder="Search..." value="@ViewData["key"]" />
+                </div>
+                <button type="button" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -67,3 +68,12 @@
 
 </div>
 <!-- /.container-fluid -->
+
+<script>
+    $(document).ready(function () {
+        $('button').click(function () {
+            var name = $('#country-search').val();
+            window.location.href = "/country?name=" + name;
+        });
+    });
+</script>

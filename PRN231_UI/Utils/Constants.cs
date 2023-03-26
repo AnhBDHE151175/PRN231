@@ -33,5 +33,7 @@
         public const string LOCATION_API = "/Locations";
 
         public const string REGION_API = "/Regions";
+
+        public const string CANDIDATE_API = "/Candidates";
     }
 }

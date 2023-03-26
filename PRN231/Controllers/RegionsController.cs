@@ -23,23 +23,23 @@ namespace PRN231.Controllers
 
         // GET: api/Regions
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Region>>> GetRegions(string name)
+        public async Task<ActionResult<IEnumerable<Region>>> GetRegions(string? name)
         {
-          if (_context.Regions == null)
-          {
-              return NotFound();
-          }
-            return await _context.Regions.Where(x => name.IsNullOrEmpty() || x.RegionName.Contains(name, StringComparison.OrdinalIgnoreCase)).ToListAsync();
+            if (_context.Regions == null)
+            {
+                return NotFound();
+            }
+            return await _context.Regions.AsQueryable().Where(x => name.IsNullOrEmpty() || x.RegionName.ToLower().Contains(name.ToLower())).ToListAsync();
         }
 
         // GET: api/Regions/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Region>> GetRegion(int id)
         {
-          if (_context.Regions == null)
-          {
-              return NotFound();
-          }
+            if (_context.Regions == null)
+            {
+                return NotFound();
+            }
             var region = await _context.Regions.FindAsync(id);
 
             if (region == null)
@@ -86,10 +86,10 @@ namespace PRN231.Controllers
         [HttpPost]
         public async Task<ActionResult<Region>> PostRegion(Region region)
         {
-          if (_context.Regions == null)
-          {
-              return Problem("Entity set 'ApplicationContext.Regions'  is null.");
-          }
+            if (_context.Regions == null)
+            {
+                return Problem("Entity set 'ApplicationContext.Regions'  is null.");
+            }
             _context.Regions.Add(region);
             await _context.SaveChangesAsync();
 

@@ -23,17 +23,18 @@ namespace PRN231.Controllers
 
         // GET: api/Candidates
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Candidate>>> GetCandidates(string name, int? departmentId, string email, DateTime? hireDate, string phone)
+        public async Task<ActionResult<IEnumerable<Candidate>>> GetCandidates(string? name, int? departmentId, string? email, DateTime? hireDate, string? phone)
         {
             if (_context.Candidates == null)
             {
                 return NotFound();
             }
-            return await _context.Candidates
-                .Where(x => name.IsNullOrEmpty() || x.FirstName.Contains(name, StringComparison.OrdinalIgnoreCase))
+            return await _context.Candidates.Include(x => x.Department)
+                .AsQueryable()
+                .Where(x => name.IsNullOrEmpty() || x.FirstName.Contains(name))
                 .Where(x => departmentId == null || x.DepartmentId == departmentId)
-                .Where(x => phone.IsNullOrEmpty() || x.PhoneNumber.Contains(phone, StringComparison.OrdinalIgnoreCase))
-                .Where(x => email.IsNullOrEmpty() || x.Email.Contains(email, StringComparison.OrdinalIgnoreCase))
+                .Where(x => phone.IsNullOrEmpty() || x.PhoneNumber.Contains(phone))
+                .Where(x => email.IsNullOrEmpty() || x.Email.Contains(email))
                 .Where(x => hireDate == null || x.HireDate.Equals(hireDate))
                 .ToListAsync();
         }
