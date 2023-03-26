@@ -9,6 +9,8 @@
         public const string JOB_UPDATE = "/Job/Update";
         public const string JOB_DELETE = "/Job/Delete";
         public const string JOB_GETBYID = "/Job/GetByID";
+        public const string JOB_ANALY = "/Job/Analysis";
+        public const string LOGIN = "/Job/Login";
         //Skill
         public const string SKILL_GETALL = "/Skill/GetFilter";
         public const string SKILL_INSERT = "/Skill/Insert";

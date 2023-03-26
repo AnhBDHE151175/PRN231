@@ -11,10 +11,20 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary" style="display:flex;justify-content:flex-end;">
-                <a class="btn btn-primary" href="/region/update">Create</a>
-            </h6>
-            <h6 class="m-0 font-weight-bold text-primary">List of regions</h6>
+            <div class="row">
+                <div class="col-6 input-group" style="float: right;">
+                    <div class="form-outline">
+                        <input type="search" id="department-search" class="form-control" placeholder="Search..." value="@ViewData["key"]" />
+                    </div>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <h6 class="col-6 m-0 font-weight-bold text-primary" style="display:flex;justify-content:flex-end;">
+                    <a class="btn btn-primary" href="/region/update">Create</a>
+                </h6>
+            </div>
+
         </div>
         <div class="card-body">
             <div class="table-responsive">

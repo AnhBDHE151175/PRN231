@@ -14,7 +14,7 @@ public partial class Candidate : BaseEntity
 
     public string? PhoneNumber { get; set; }
 
-    public DateTime HireDate { get; set; }
+    public DateTime? HireDate { get; set; }
 
     public int JobId { get; set; }
 
@@ -26,9 +26,9 @@ public partial class Candidate : BaseEntity
 
     public virtual Department? Department { get; set; }
 
-    public virtual ICollection<InterviewerCandidate> InterviewerCandidates { get; } = new List<InterviewerCandidate>();
+    //public virtual ICollection<InterviewerCandidate> InterviewerCandidates { get; } = new List<InterviewerCandidate>();
 
-    public virtual Job Job { get; set; } = null!;
+    //public virtual Job Job { get; set; } = null!;
 
-    public virtual ICollection<Stage> Stages { get; } = new List<Stage>();
+    //public virtual ICollection<Stage> Stages { get; } = new List<Stage>();
 }

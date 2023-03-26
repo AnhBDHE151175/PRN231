@@ -84,33 +84,9 @@ public partial class ApplicationContext : DbContext
                 .HasColumnType("decimal(8, 2)")
                 .HasColumnName("salary");
 
-            entity.HasOne(d => d.Department).WithMany(p => p.Candidates)
-                .HasForeignKey(d => d.DepartmentId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__employees__depar__3E52440B");
+            
 
-            entity.HasOne(d => d.Job).WithMany(p => p.Candidates)
-                .HasForeignKey(d => d.JobId)
-                .HasConstraintName("FK__employees__job_i__3F466844");
-
-            entity.HasMany(d => d.Stages).WithMany(p => p.Candidates)
-                .UsingEntity<Dictionary<string, object>>(
-                    "CandiadateStage",
-                    r => r.HasOne<Stage>().WithMany()
-                        .HasForeignKey("StageId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK_candiadate_stage_stages"),
-                    l => l.HasOne<Candidate>().WithMany()
-                        .HasForeignKey("CandidateId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK_candiadate_stage_candidates"),
-                    j =>
-                    {
-                        j.HasKey("CandidateId", "StageId");
-                        j.ToTable("candiadate_stage");
-                        j.IndexerProperty<int>("CandidateId").HasColumnName("candidate_id");
-                        j.IndexerProperty<int>("StageId").HasColumnName("stage_id");
-                    });
+            
         });
 
         modelBuilder.Entity<Country>(entity =>
@@ -179,10 +155,7 @@ public partial class ApplicationContext : DbContext
             entity.Property(e => e.CandidateId).HasColumnName("candidate_id");
             entity.Property(e => e.Score).HasColumnName("score");
 
-            entity.HasOne(d => d.Candidate).WithMany(p => p.InterviewerCandidates)
-                .HasForeignKey(d => d.CandidateId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_interviewer_candidate_candidates");
+            
 
             entity.HasOne(d => d.Interviewer).WithMany(p => p.InterviewerCandidates)
                 .HasForeignKey(d => d.InterviewerId)

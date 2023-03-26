@@ -20,13 +20,13 @@ namespace PRN231_UI.Controllers
             client.BaseAddress = baseAddress;
         }
 
-        public IActionResult Index(int pageIndex = 1)
+        public IActionResult Index(int pageIndex = 1, string search = "")
         {
             Pager request = new Pager()
             {
                 PageIndex = pageIndex,
                 PageSize = 10,
-                Keyword = "",
+                Keyword = search,
             };
 
             StringContent content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
@@ -37,6 +37,7 @@ namespace PRN231_UI.Controllers
             if (!dataObject.IsError)
             {
                 ViewBag.Data = dataObject.Data;
+                ViewBag.Keyword = search;
             }
             return View();
         }
@@ -95,6 +96,18 @@ namespace PRN231_UI.Controllers
 
 
             return View();
+        }
+        public IActionResult Delete(int id)
+        {
+
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + Constants.JOB_DELETE + $"/{id}").Result;
+
+
+            var dataString = response.Content.ReadAsStringAsync().Result;
+            var dataObject = JsonConvert.DeserializeObject<Response>(dataString);
+            ViewBag.Data = dataObject;
+
+            return Redirect("/Job/index");
         }
         [HttpPost]
         public IActionResult Insert(IFormCollection form)
