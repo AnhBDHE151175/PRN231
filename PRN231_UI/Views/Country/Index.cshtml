@@ -11,15 +11,17 @@
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3 row">
-            <h6 class="col-6 m-0 font-weight-bold text-primary">List of countries</h6>
-            <div class="col-6 input-group" style="float: right;">
-                <div class="form-outline">
-                    <input type="search" id="country-search" class="form-control" placeholder="Search..." value="@ViewData["key"]" />
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-6 input-group" style="float: right;">
+                    <div class="form-outline">
+                        <input type="search" id="country-search" class="form-control" placeholder="Search..." value="@ViewData["key"]" />
+                    </div>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
-                <button type="button" class="btn btn-primary">
-                    <i class="fas fa-search"></i>
-                </button>
+                <h6 class="col-6 m-0 font-weight-bold text-primary"></h6>
             </div>
         </div>
         <div class="card-body">
@@ -33,14 +35,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(var data in Model)
+                        @foreach (var data in Model)
                         {
                             <tr>
                                 <td>@data.Id</td>
                                 <td>@data.CountryName</td>
                                 <td>@data.RegionId</td>
                             </tr>
-                        }                
+                        }
                     </tbody>
                 </table>
                 <div style="display:flex;justify-content:center">

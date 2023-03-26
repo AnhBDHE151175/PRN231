@@ -20,13 +20,13 @@ namespace PRN231_UI.Controllers
             client.BaseAddress = baseAddress;
         }
 
-        public IActionResult Index(int pageIndex = 1)
+        public IActionResult Index(int pageIndex = 1, string search = "")
         {
             Pager request = new Pager()
             {
                 PageIndex = pageIndex,
                 PageSize = 10,
-                Keyword = "",
+                Keyword = search,
             };
 
             StringContent content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
@@ -37,6 +37,7 @@ namespace PRN231_UI.Controllers
             if (!dataObject.IsError)
             {
                 ViewBag.Data = dataObject.Data;
+                ViewBag.Keyword = search;
             }
             return View();
         }

@@ -24,7 +24,7 @@ public partial class Candidate : BaseEntity
 
     public int? DepartmentId { get; set; }
 
-    //public virtual Department? Department { get; set; }
+    public virtual Department? Department { get; set; }
 
     //public virtual ICollection<InterviewerCandidate> InterviewerCandidates { get; } = new List<InterviewerCandidate>();
 

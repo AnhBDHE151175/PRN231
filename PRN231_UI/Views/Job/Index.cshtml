@@ -15,9 +15,31 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary" style="display:flex;justify-content:flex-end;">
-                <a class="btn btn-primary" href="/job/update">Create</a>
-            </h6>
+            <div class="row">
+                <div class="col-4">
+                    <form method="get" action="/job/index" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <div class="form-outline">
+                                <input value="@ViewBag.Keyword" type="text" class="form-control" name="search" placeholder="Search..."
+                                       aria-label="Search" aria-describedby="basic-addon2">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+
+
+                        </div>
+                    </form>
+                </div>
+                <div class="col-4">
+                </div>
+                <div class="col-4">
+                    <h6 class="m-0 font-weight-bold text-primary" style="display:flex;justify-content:flex-end;">
+                        <a class="btn btn-primary" href="/job/update">Create</a>
+                    </h6>
+                </div>
+            </div>
+
         </div>
         <div class="card-body">
             <div class="table-responsive">

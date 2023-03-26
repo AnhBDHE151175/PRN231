@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging.Rules;
 using PRN231.DTOs.RequestModels;
 using PRN231.DTOs.ResponseModels;
 using PRN231.Entities;
@@ -52,6 +54,26 @@ namespace PRN231.Controllers
             await applicationContext.SaveChangesAsync();
 
             return await service.Delete(id);
+        }
+        [HttpGet]
+
+        public async Task<AnalysisResponse> Analysis()
+        {
+            var n1 = applicationContext.Departments.Count();
+            var n2 = applicationContext.Jobs.Count();
+            var n3 = applicationContext.Candidates.Count();
+            var n4 = applicationContext.Interviewers.Count();
+
+            var data = new AnalysisResponse() { NumCan = n3, NumDe = n1, NumInter = n4, NumJob = n2 };
+            return data;
+        }
+        [HttpPost]
+        public async Task<LoginResponse> Login(LoginRequest entity)
+        {
+            var data = await applicationContext.Interviewers.FirstOrDefaultAsync(o => o.Email == entity.email && o.Password == entity.password);
+            var fullName = data != null ? $"{data.FirstName}{data.LastName}" : "";
+
+            return new LoginResponse() { FullName = fullName };
         }
     }
 }

@@ -45,4 +45,20 @@ namespace PRN231.DTOs.ResponseModels
 
         public string? Skills { get; set; }
     }
+    public class AnalysisResponse 
+    {
+        public int NumDe { get; set; }
+        public int NumJob { get; set; }
+        public int NumCan { get; set; }
+        public int NumInter { get; set; }
+    }
+    public class LoginRequest
+    {
+        public string? email { get; set; }
+        public string? password { get; set; }
+    }
+    public class LoginResponse
+    {
+        public string? FullName { get; set; }
+    }
 }
