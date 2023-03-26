@@ -90,16 +90,16 @@ namespace PRN231.Controllers
         // POST: api/Candidates
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Candidate>> PostCandidate(Candidate candidate)
+        public async Task<bool> PostCandidate(Candidate candidate)
         {
             if (_context.Candidates == null)
             {
-                return Problem("Entity set 'ApplicationContext.Candidates'  is null.");
+                return false;
             }
+            candidate.HireDate = DateTime.Now;
             _context.Candidates.Add(candidate);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCandidate", new { id = candidate.Id }, candidate);
+            var save = await _context.SaveChangesAsync();
+            return save > 0;
         }
 
         // DELETE: api/Candidates/5

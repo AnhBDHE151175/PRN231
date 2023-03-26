@@ -15,7 +15,22 @@ namespace PRN231.Services
         }
         public async Task<Response> Delete(int id)
         {
-            throw new NotImplementedException();
+            var res = new Response();
+            try
+            {
+                var data = await GetByID(id);
+                if (data != null)
+                {
+                    _context.Remove<TEntity>(data);
+                    var affected = await _context.SaveChangesAsync();
+                    res.StatusCode = affected > 0 ? ResponseStatusCode.Success : ResponseStatusCode.Error;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.StatusCode = ResponseStatusCode.Error;
+            }
+            return res;
         }
 
         public async Task<ListDataOutput<TEntity>> GetAll()

@@ -41,7 +41,7 @@
             <!-- Masthead Avatar Image-->
             <img class="masthead-avatar mb-5" src="~/asset/assets/img/avataaars.svg" alt="..." />
             <!-- Masthead Heading-->
-            <h1 class="masthead-heading text-uppercase mb-0">WE ARE HIRING!</h1>
+            <h1 class="masthead-heading text-uppercase mb-0">Thanks for contact!</h1>
             <!-- Icon Divider-->
             <div class="divider-custom divider-light">
                 <div class="divider-custom-line"></div>
@@ -49,82 +49,9 @@
                 <div class="divider-custom-line"></div>
             </div>
             <!-- Masthead Subheading-->
-            <p class="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Illustrator</p>
+            <p class="masthead-subheading font-weight-light mb-0">YOOOOOOOOOOOOOOO</p>
         </div>
     </header>
-    <!-- Contact Section-->
-    <section class="page-section" id="contact">
-        <div class="container">
-            <!-- Contact Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <!-- Contact Section Form-->
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-xl-7">
-                    <form id="contactForm" method="post" action="/landing/insert">
-                        <!-- Name input-->
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="firstName" name="firstName" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                            <label for="name">First name</label>
-                            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                        </div><div class="form-floating mb-3">
-                            <input class="form-control" id="lastName" name="lastName" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                            <label for="name">Last name</label>
-                            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                        </div>
-                        <!-- Email address input-->
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="email" type="email" name="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                            <label for="email">Email address</label>
-                            <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                            <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                        </div>
-                        <!-- Phone number input-->
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="phone" type="tel" name="phone" placeholder="(123) 456-7890" data-sb-validations="required" />
-                            <label for="phone">Phone number</label>
-                            <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                        </div>
-                        <!-- Message input-->
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="salary" name="salary" type="number" placeholder="(123) 456-7890" data-sb-validations="required" />
-                            <label for="phone">Salary</label>
-                            <div class="invalid-feedback" data-sb-feedback="salary:required">A salary number is required.</div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <select class="form-select" id="select" aria-label="Default select example" name="departmentId">
-                                @{
-                                    foreach (var i in ViewBag.DataDepartment)
-                                    {
-                                        <option value="@i.Id">@i.DepartmentName</option>
-                                    }
-                                }
-                            </select>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <select class="form-select" id="select" aria-label="Default select example" name="jobId">
-                                @{
-                                    foreach (var i in ViewBag.Data)
-                                    {
-                                        <option value="@i.ID">@i.JobTitle</option>
-                                    }
-                                }
-                            </select>
-                        </div>
-                        <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Send</button>
-                    </form>
-                    @{
-                        <p>@ViewData["Noti"]</p>
-                    }
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Footer-->
     <footer class="footer text-center">
         <div class="container">
@@ -134,11 +61,11 @@
                 </div>
                 <!-- Footer Social Icons-->
                 <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Around the Web</h4>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+                    <h4 class="text-uppercase mb-4">Our Social</h4>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#"><i class="fab fa-fw fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#"><i class="fab fa-fw fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#"><i class="fab fa-fw fa-dribbble"></i></a>
                 </div>
                 <!-- Footer About Text-->
                 <div class="col-lg-4">

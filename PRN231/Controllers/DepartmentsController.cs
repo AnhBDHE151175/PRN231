@@ -23,23 +23,28 @@ namespace PRN231.Controllers
 
         // GET: api/Departments
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Department>>> GetDepartments(string name)
+        public async Task<ActionResult<IEnumerable<Department>>> GetDepartments(string? name)
         {
-          if (_context.Departments == null)
-          {
-              return NotFound();
-          }
-            return await _context.Departments.Where(x => name.IsNullOrEmpty() || x.DepartmentName.Contains(name, StringComparison.OrdinalIgnoreCase)).ToListAsync();
+            if (_context.Departments == null)
+            {
+                return NotFound();
+            }
+            var data = await _context.Departments.ToListAsync();
+            if (!string.IsNullOrEmpty(name))
+            {
+                data = data.Where(o => o.Equals(name)).ToList();
+            }
+            return data;
         }
 
         // GET: api/Departments/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Department>> GetDepartment(int id)
         {
-          if (_context.Departments == null)
-          {
-              return NotFound();
-          }
+            if (_context.Departments == null)
+            {
+                return NotFound();
+            }
             var department = await _context.Departments.FindAsync(id);
 
             if (department == null)
@@ -86,10 +91,10 @@ namespace PRN231.Controllers
         [HttpPost]
         public async Task<ActionResult<Department>> PostDepartment(Department department)
         {
-          if (_context.Departments == null)
-          {
-              return Problem("Entity set 'ApplicationContext.Departments'  is null.");
-          }
+            if (_context.Departments == null)
+            {
+                return Problem("Entity set 'ApplicationContext.Departments'  is null.");
+            }
             _context.Departments.Add(department);
             await _context.SaveChangesAsync();
 

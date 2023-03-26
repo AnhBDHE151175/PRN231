@@ -10,5 +10,5 @@ public partial class Stage : BaseEntity
 
     public int StageIndex { get; set; }
 
-    public virtual ICollection<Candidate> Candidates { get; } = new List<Candidate>();
+    //public virtual ICollection<Candidate> Candidates { get; } = new List<Candidate>();
 }

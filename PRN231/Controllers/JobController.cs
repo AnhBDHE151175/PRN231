@@ -12,10 +12,12 @@ namespace PRN231.Controllers
     public class JobController : ControllerBase
     {
         private JobService service;
+        private ApplicationContext applicationContext;
 
-        public JobController(JobService service)
+        public JobController(JobService service, ApplicationContext applicationContext)
         {
             this.service = service;
+            this.applicationContext = applicationContext;
         }
         [HttpPost]
         public async Task<ListDataOutput<JobResponse>> GetFilter(Pager pager)
@@ -45,6 +47,10 @@ namespace PRN231.Controllers
 
         public async Task<Response> Delete(int id)
         {
+            var dataSkills = applicationContext.JobsSkills.Where(o => o.JobId == id).ToList();
+            applicationContext.JobsSkills.RemoveRange(dataSkills);
+            await applicationContext.SaveChangesAsync();
+
             return await service.Delete(id);
         }
     }

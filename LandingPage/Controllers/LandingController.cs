@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PRN231.DTOs.RequestModels;
 using PRN231.DTOs.ResponseModels;
+using PRN231.Entities;
 using PRN231_UI.Utils;
 using System.Diagnostics;
 using System.Text;
@@ -33,18 +34,51 @@ namespace LandingPage.Controllers
 
             var dataString = response.Content.ReadAsStringAsync().Result;
             var dataObject = JsonConvert.DeserializeObject<ListDataOutput<JobResponse>>(dataString);
-            if (!dataObject.IsError)
-            {
-                ViewBag.Data = dataObject.Data;
-            }
+            ViewBag.Data = dataObject.Data;
+
+
+            //Candidate request2 = new Candidate()
+            //{
+            //    FirstName = form["firstName"].ToString(),
+            //    LastName = form["lastName"].ToString(),
+            //    PhoneNumber = form["phone"].ToString(),
+            //    Email = form["email"].ToString(),
+            //    JobId = Int32.Parse(form["jobId"].ToString()),
+            //    Salary = Decimal.Parse(form["salary"].ToString()),
+            //};
+
+            //StringContent content2 = new StringContent(JsonConvert.SerializeObject(request2), Encoding.UTF8, "application/json");
+            HttpResponseMessage response2 = client.GetAsync(client.BaseAddress + Constants.DEPARTMENT_API).Result;
+
+            var dataString2 = response2.Content.ReadAsStringAsync().Result;
+            var dataObject2 = JsonConvert.DeserializeObject<List<Department>>(dataString2);
+            ViewBag.DataDepartment = dataObject2;
             return View();
         }
         public IActionResult Insert(IFormCollection form)
         {
-            return View();
+
+            Candidate request = new Candidate()
+            {
+                FirstName = form["firstName"].ToString(),
+                LastName = form["lastName"].ToString(),
+                PhoneNumber = form["phone"].ToString(),
+                Email = form["email"].ToString(),
+                JobId = Int32.Parse(form["jobId"].ToString()),
+                Salary = Decimal.Parse(form["salary"].ToString()),
+                DepartmentId = Int32.Parse(form["departmentId"].ToString()),
+            };
+
+            StringContent content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = client.PostAsync(client.BaseAddress + "/Candidates", content).Result;
+
+            var dataString = response.Content.ReadAsStringAsync().Result;
+            var dataObject = JsonConvert.DeserializeObject<bool>(dataString);
+
+            return Redirect("/landing/thanks");
         }
 
-        public IActionResult Privacy()
+        public IActionResult Thanks()
         {
             return View();
         }
