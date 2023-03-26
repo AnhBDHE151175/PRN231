@@ -21,8 +21,12 @@ namespace PRN231_UI.Controllers
 
         public IActionResult Index(int pageIndex = 1)
         {
-            var a = HttpContext.Session.GetString("FullName");
             ViewData["FullName"] = HttpContext.Session.GetString("FullName");
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("FullName")))
+            {
+                TempData["message"] = "Please Login!!!";
+                return Redirect("/login/index");
+            }
 
             HttpResponseMessage response = client.GetAsync(client.BaseAddress + Constants.JOB_ANALY).Result;
 
