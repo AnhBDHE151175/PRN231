@@ -20,6 +20,7 @@ namespace PRN231_UI.Controllers
         }
         public IActionResult Index()
         {
+            ViewData["message"] = TempData["message"];
             return View();
         }
 
@@ -38,7 +39,11 @@ namespace PRN231_UI.Controllers
             var dataObject = JsonConvert.DeserializeObject<LoginResponse>(dataString);
             HttpContext.Session.SetString("FullName", dataObject.FullName);
             ViewBag.Data = dataObject;
-            return Redirect("/Home/Index");
+            if (!string.IsNullOrEmpty(dataObject.FullName))
+            {
+                return Redirect("/Home/Index");
+            }
+            return Redirect("/login/Index");
 
         }
 

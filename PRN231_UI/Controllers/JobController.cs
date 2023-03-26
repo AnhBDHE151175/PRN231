@@ -22,6 +22,12 @@ namespace PRN231_UI.Controllers
 
         public IActionResult Index(int pageIndex = 1, string search = "")
         {
+            ViewData["FullName"] = HttpContext.Session.GetString("FullName");
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("FullName")))
+            {
+                TempData["message"] = "Please Login!!!";
+                return Redirect("/login/index");
+            }
             Pager request = new Pager()
             {
                 PageIndex = pageIndex,

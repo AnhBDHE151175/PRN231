@@ -19,6 +19,13 @@ namespace PRN231_UI.Controllers
         }
         public IActionResult Index(string name)
         {
+
+            ViewData["FullName"] = HttpContext.Session.GetString("FullName");
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("FullName")))
+            {
+                TempData["message"] = "Please Login!!!";
+                return Redirect("/login/index");
+            }
             List<Region> products = new();
             HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + $"{Constants.REGION_API}?name={name}").Result;
 

@@ -19,6 +19,12 @@ namespace PRN231_UI.Controllers
         }
         public IActionResult Index(string name)
         {
+            ViewData["FullName"] = HttpContext.Session.GetString("FullName");
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("FullName")))
+            {
+                TempData["message"] = "Please Login!!!";
+                return Redirect("/login/index");
+            }
             List<Interviewer> candidates = new();
             HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + $"{Constants.CANDIDATE_API}?name={name}").Result;
 
