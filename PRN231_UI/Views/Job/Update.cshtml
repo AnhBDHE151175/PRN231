@@ -1,0 +1,83 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var dataGetById = @ViewBag.DataGetById;
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Jobs</h1>
+    <p class="mb-4">
+        Jobs Management
+    </p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <form method="post" action="/job/edit">
+                    <div style="display:none">
+                        <input name="id" value="@dataGetById.Id" type="text" class="form-control">
+                    </div><div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Job Title</label>
+                        <input name="jobTitle" value="@dataGetById.JobTitle" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter...">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Min Salary</label>
+                        <input name="min" value="@dataGetById.MinSalary" type="number" class="form-control" id="exampleFormControlInput2" placeholder="Enter...">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Max Salary</label>
+                        <input name="max" value="@dataGetById.MaxSalary" type="number" class="form-control" id="exampleFormControlInput3" placeholder="Enter...">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput4" class="form-label">Expired Date</label>
+                        <input name="expiredDate" value="@ViewBag.DateString" type="date" class="form-control" id="exampleFormControlInput4">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Skills</label>
+                        @{
+                            foreach (var item in ViewBag.Data)
+                            {
+
+                                if (dataGetById.Skills.ToString().Contains(item.Id.ToString()))
+                                {
+                                    <div class="form-check">
+                                        <input name="skills" class="form-check-input" type="checkbox" checked value="@item.Id" id="@item.Id">
+                                        <label class="form-check-label" for="@item.Id">
+                                            @item.Name
+                                        </label>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-check">
+                                        <input name="skills" class="form-check-input" type="checkbox" value="@item.Id" id="@item.Id">
+                                        <label class="form-check-label" for="@item.Id">
+                                            @item.Name
+                                        </label>
+                                    </div>
+                                }
+
+                            }
+                        }
+                    </div>
+                    <div style="display:flex; justify-content:center">
+                        <button type="submit" class="btn btn-success">Save</button>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->

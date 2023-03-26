@@ -25,17 +25,18 @@ namespace PRN231.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<Job> GetByID(int id)
+        public async Task<DataOutput<JobByIdResponse>> GetByID(int id)
         {
             return await service.GetByID(id);
         }
         [HttpPost]
-        public async Task<Response> Insert(Job entity)
+        public async Task<Response> Insert(JobRequest entity)
         {
+            entity.job.CreatedDate = DateTime.Now;
             return await service.Insert(entity);
         }
         [HttpPost]
-        public async Task<Response> Update(Job entity)
+        public async Task<Response> Update(JobRequest entity)
         {
             return await service.Update(entity);
         }

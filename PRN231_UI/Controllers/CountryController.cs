@@ -36,6 +36,10 @@ namespace PRN231_UI.Controllers
             ViewData["key"] = name;
             return View(products);
         }
+        public IActionResult Update()
+        {
 
+            return View();
+        }
     }
 }

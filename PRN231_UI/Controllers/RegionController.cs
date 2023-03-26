@@ -35,7 +35,11 @@ namespace PRN231_UI.Controllers
 
             return View(products);
         }
+        public IActionResult Update()
+        {
 
+            return View();
+        }
 
     }
 }
