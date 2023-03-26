@@ -23,16 +23,17 @@ namespace PRN231.Controllers
 
         // GET: api/Locations
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Location>>> GetLocations(string city, int? countryId, string postalCode)
+        public async Task<ActionResult<IEnumerable<Location>>> GetLocations(string? city, int? countryId, string? postalCode)
         {
             if (_context.Locations == null)
             {
                 return NotFound();
             }
-            return await _context.Locations
-                .Where(x => city.IsNullOrEmpty() || x.City.Contains(city, StringComparison.OrdinalIgnoreCase))
+            return await _context.Locations.Include(x => x.Country)
+                .AsQueryable()
+                .Where(x => city.IsNullOrEmpty() || x.City.ToLower().Contains(city.ToLower()))
                 .Where(x => countryId == null || x.CountryId == countryId)
-                .Where(x => postalCode.IsNullOrEmpty() || x.PostalCode.Contains(postalCode, StringComparison.OrdinalIgnoreCase))
+                .Where(x => postalCode.IsNullOrEmpty() || x.PostalCode.ToLower().Contains(postalCode.ToLower()))
                 .ToListAsync();
         }
 

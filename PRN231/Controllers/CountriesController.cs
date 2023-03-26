@@ -25,21 +25,23 @@ namespace PRN231.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Country>>> GetCountries(string? name)
         {
-          if (_context.Countries == null)
-          {
-              return NotFound();
-          }
-            return await _context.Countries.Where(x => name.IsNullOrEmpty() || x.CountryName.Contains(name, StringComparison.OrdinalIgnoreCase)).ToListAsync();
+            if (_context.Countries == null)
+            {
+                return NotFound();
+            }
+            var result = _context.Countries
+                    .Where(x => name.IsNullOrEmpty() || x.CountryName.ToLower().Contains(name.ToLower()));
+            return await result.ToListAsync();
         }
 
         // GET: api/Countries/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Country>> GetCountry(int id)
         {
-          if (_context.Countries == null)
-          {
-              return NotFound();
-          }
+            if (_context.Countries == null)
+            {
+                return NotFound();
+            }
             var country = await _context.Countries.FindAsync(id);
 
             if (country == null)
@@ -86,10 +88,10 @@ namespace PRN231.Controllers
         [HttpPost]
         public async Task<ActionResult<Country>> PostCountry(Country country)
         {
-          if (_context.Countries == null)
-          {
-              return Problem("Entity set 'ApplicationContext.Countries'  is null.");
-          }
+            if (_context.Countries == null)
+            {
+                return Problem("Entity set 'ApplicationContext.Countries'  is null.");
+            }
             _context.Countries.Add(country);
             await _context.SaveChangesAsync();
 

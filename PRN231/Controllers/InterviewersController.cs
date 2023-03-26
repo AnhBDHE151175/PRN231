@@ -29,7 +29,7 @@ namespace PRN231.Controllers
           {
               return NotFound();
           }
-            return await _context.Interviewers.Where(x => name.IsNullOrEmpty() || x.FirstName.Contains(name, StringComparison.OrdinalIgnoreCase)).ToListAsync();
+            return await _context.Interviewers.AsQueryable().Where(x => name.IsNullOrEmpty() || x.FirstName.Contains(name)).ToListAsync();
         }
 
         // GET: api/Interviewers/5

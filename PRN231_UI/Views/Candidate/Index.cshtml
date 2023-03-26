@@ -7,11 +7,11 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Regions</h1>
+    <h1 class="h3 mb-2 text-gray-800">Candidates</h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">List of regions</h6>
+            <h6 class="m-0 font-weight-bold text-primary">List of candidates</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -20,6 +20,10 @@
                         <tr>
                             <th>Id</th>
                             <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Hired Date</th>
+                            <th>Department</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,7 +31,11 @@
                         {
                             <tr>
                                 <td>@data.Id</td>
-                                <td>@data.RegionName</td>
+                                <td>@($"{data.FirstName} {data.LastName}")</td>
+                                <td>@data.Email</td>
+                                <td>@data.PhoneNumber</td>
+                                <td>@data.HireDate.ToString("dd/MM/yyyy")</td>
+                                <td>@data.Department.DepartmentName</td>
                             </tr>
                         }
                     </tbody>
