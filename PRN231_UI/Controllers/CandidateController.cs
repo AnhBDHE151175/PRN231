@@ -37,7 +37,7 @@ namespace PRN231_UI.Controllers
                 candidates = JsonSerializer.Deserialize<List<Candidate>>(data, options);
             }
             ViewBag.Current = pageIndex ?? 1;
-            ViewBag.TotalPage = (int)Math.Floor(candidates.Count() * 1.0 / Constants.PAGE_SIZE);
+            ViewBag.TotalPage = (int)Math.Ceiling(candidates.Count() * 1.0 / Constants.PAGE_SIZE);
 
             candidates = candidates.Skip((pageIndex ?? 1 - 1) * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE).ToList();
             ViewData["SearchName"] = name;
