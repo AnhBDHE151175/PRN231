@@ -10,8 +10,16 @@
     <h1 class="h3 mb-2 text-gray-800">Candidates</h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">List of candidates</h6>
+        <div class="card-header py-3 row">
+            <h6 class="col-6 m-0 font-weight-bold text-primary">List of countries</h6>
+            <div class="col-6 input-group" style="float: right;">
+                <div class="form-outline">
+                    <input type="search" id="department-search" class="form-control" placeholder="Search..." value="@ViewData["SearchName"]" />
+                </div>
+                <button type="button" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -40,9 +48,46 @@
                         }
                     </tbody>
                 </table>
+                <div style="display:flex;justify-content:center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            @for (int i = 1; i < ViewBag.TotalPage; i++)
+                            {
+                                <li class="page-item"><a class="page-link" href="#">@i</a></li>
+                            }
+                            <li>
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
 
 </div>
 <!-- /.container-fluid -->
+<script>
+    $(document).ready(function () {
+        $('button').click(function () {
+            var name = $('#department-search').val();
+            window.location.href = "/department?name=" + name;
+        });
+
+        $('#page-item').click(function () {
+            var name = $('#department-search').val();
+            var pageIndex = $(this '.page-link').text();
+
+            console.log(name);
+            console.log(pageIndex);
+            window.location.href = "/department";
+        });
+    });
+</script>

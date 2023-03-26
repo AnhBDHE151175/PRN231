@@ -3,6 +3,13 @@
 *@
 @{
 }
+
+<style>
+    .page-item[selected]{
+        background-color: rebeccapurple;
+        color: white;
+    }
+</style>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -52,10 +59,11 @@
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
+                            @for (int i = 1; i < ViewBag.TotalPage; i++)
+                            {
+                                <li class="page-item" selected><a class="page-link">@i</a></li>
+                            }
+                            <li>
                                 <a class="page-link" href="#" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>

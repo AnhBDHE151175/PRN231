@@ -35,5 +35,8 @@
         public const string REGION_API = "/Regions";
 
         public const string CANDIDATE_API = "/Candidates";
+
+
+        public const int PAGE_SIZE = 10;
     }
 }

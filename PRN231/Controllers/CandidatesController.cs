@@ -36,6 +36,7 @@ namespace PRN231.Controllers
                 .Where(x => phone.IsNullOrEmpty() || x.PhoneNumber.Contains(phone))
                 .Where(x => email.IsNullOrEmpty() || x.Email.Contains(email))
                 .Where(x => hireDate == null || x.HireDate.Equals(hireDate))
+                .OrderByDescending(x => x.HireDate)
                 .ToListAsync();
         }
 
