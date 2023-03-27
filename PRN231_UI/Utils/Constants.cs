@@ -11,6 +11,7 @@
         public const string JOB_GETBYID = "/Job/GetByID";
         public const string JOB_ANALY = "/Job/Analysis";
         public const string LOGIN = "/Job/Login";
+        public const string SEND = "/Job/SendMail";
         //Skill
         public const string SKILL_GETALL = "/Skill/GetFilter";
         public const string SKILL_INSERT = "/Skill/Insert";

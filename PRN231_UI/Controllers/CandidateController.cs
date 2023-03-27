@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PRN231.DTOs.RequestModels;
+using PRN231.DTOs.ResponseModels;
 using PRN231.Entities;
 using PRN231_UI.Utils;
+using System.Text;
 using System.Text.Json;
 
 namespace PRN231_UI.Controllers
@@ -15,7 +18,7 @@ namespace PRN231_UI.Controllers
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = _baseAddress;
         }
-        public IActionResult Index(string name, int? pageIndex, int? deId=0)
+        public IActionResult Index(string name, int? pageIndex, int? deId = 0)
         {
             ViewData["FullName"] = HttpContext.Session.GetString("FullName");
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("FullName")))
@@ -64,6 +67,26 @@ namespace PRN231_UI.Controllers
             return View(candidates);
 
         }
+        public IActionResult SendMail(string mail)
+        {
+            ViewBag.Mail = mail;
+            return View();
+        }
+        public IActionResult Send(IFormCollection form)
+        {
+            MailRequest request = new MailRequest()
+            {
+                ToEmail= form["email"].ToString(),
+                Subject= form["subject"].ToString(),
+                Message= form["message"].ToString(),
+            };
 
+            StringContent content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = _httpClient.PostAsync(_httpClient.BaseAddress + Constants.SEND, content).Result;
+
+            var dataString = response.Content.ReadAsStringAsync().Result;
+            var dataObject = Newtonsoft.Json.JsonConvert.DeserializeObject<Response>(dataString);
+            return Redirect("/candidate/index");
+        }
     }
 }

@@ -54,6 +54,7 @@
                                     <th>Phone</th>
                                     <th>Hired Date</th>
                                     <th>Department</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,6 +67,7 @@
                                         <td>@data.PhoneNumber</td>
                                         <td>@data.HireDate.ToString("dd/MM/yyyy")</td>
                                         <td>@data.Department.DepartmentName</td>
+                                        <td><a href="/candidate/sendmail?mail=@data.Email">Send mail</a></td>
                                     </tr>
                                 }
                             </tbody>

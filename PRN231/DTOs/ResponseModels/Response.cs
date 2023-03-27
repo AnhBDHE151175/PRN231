@@ -57,6 +57,13 @@ namespace PRN231.DTOs.ResponseModels
         public string? email { get; set; }
         public string? password { get; set; }
     }
+    public class MailRequest
+    {
+        public string? ToEmail { get; set; }
+        public string? Subject { get; set; }
+        public string? Message { get; set; }
+
+    }
     public class LoginResponse
     {
         public string? FullName { get; set; }
