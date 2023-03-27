@@ -26,7 +26,7 @@ namespace PRN231_UI.Controllers
                 TempData["message"] = "Please Login!!!";
                 return Redirect("/login/index");
             }
-            List<Department> products = new();
+            List<Department> departments = new();
             HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + $"{Constants.DEPARTMENT_API}?name={name}").Result;
 
             if (response.IsSuccessStatusCode)
@@ -37,10 +37,11 @@ namespace PRN231_UI.Controllers
                 {
                     PropertyNameCaseInsensitive = true,
                 };
-                products = JsonSerializer.Deserialize<List<Department>>(data, options);
+                departments = JsonSerializer.Deserialize<List<Department>>(data, options);
             }
+            ViewBag.TotalPage = (int) Math.Ceiling(departments.Count() * 1.0 / Constants.PAGE_SIZE);
             @ViewData["key"] = name;
-            return View(products);
+            return View(departments);
         }
 
         public IActionResult Update()

@@ -14,17 +14,41 @@
             <div class="row">
                 <div class="col-6 input-group" style="float: right;">
                     <div class="form-outline">
-                        <input type="search" id="department-search" class="form-control" placeholder="Search..." value="@ViewData["key"]" />
+                        <input type="search" id="region-search" class="form-control" placeholder="Search..." value="@ViewData["key"]" />
                     </div>
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" id="button-search">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
                 <h6 class="col-6 m-0 font-weight-bold text-primary" style="display:flex;justify-content:flex-end;">
-                    <a class="btn btn-primary" href="/region/update">Create</a>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
+                        Create
+                    </button>
                 </h6>
             </div>
-
+        </div>
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form action="/region/create" method="Post">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Create new region</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <input type="search" name="region-name" id="region-create" class="form-control" placeholder="Enter region name..." required />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="button-create">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -33,6 +57,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Name</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,32 +66,61 @@
                             <tr>
                                 <td>@data.Id</td>
                                 <td>@data.RegionName</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateModal">
+                                        Update
+                                    </button>
+                                    <a class="btn btn-danger" href="/region/delete/@data.Id">
+                                        Delete
+                                    </a>
+                                    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <form action="/region/update" method="Post">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Update region</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div>
+                                                            <label>Region ID</label>
+                                                            <input type="search" name="region-id" class="form-control" value="@data.Id" readonly />
+                                                            <label>Region Name</label>
+                                                            <input type="search" name="region-name" class="form-control" value="@data.RegionName" required />
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary" id="button-create">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                         }
                     </tbody>
                 </table>
-                <div style="display:flex;justify-content:center">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
             </div>
         </div>
     </div>
 
 </div>
 <!-- /.container-fluid -->
+<script>
+    $(function () {
+        $('#button-search').click(function () {
+            var name = $('#region-search').val();
+            window.location.href = "/region?name=" + name;
+        });
+        $('button-create').click(function () {
+            var countryName = $('#region-create').val();
+            window.location.href = "/region/create/"
+        });
+    });
+
+  
+</script>

@@ -52,13 +52,9 @@ namespace PRN231.Controllers
 
         // PUT: api/Regions/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutRegion(int id, Region region)
+        [HttpPut]
+        public async Task<IActionResult> PutRegion(Region region)
         {
-            if (id != region.Id)
-            {
-                return BadRequest();
-            }
 
             _context.Entry(region).State = EntityState.Modified;
 
@@ -68,7 +64,7 @@ namespace PRN231.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RegionExists(id))
+                if (!RegionExists(region.Id))
                 {
                     return NotFound();
                 }
@@ -90,6 +86,11 @@ namespace PRN231.Controllers
             {
                 return Problem("Entity set 'ApplicationContext.Regions'  is null.");
             }
+
+            if(_context.Regions.Any(x => x.RegionName.ToLower().Equals(region.RegionName.ToLower()))){
+                return Problem("CountryName have already existed!");
+            }
+            
             _context.Regions.Add(region);
             await _context.SaveChangesAsync();
 

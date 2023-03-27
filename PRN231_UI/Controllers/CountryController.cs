@@ -44,8 +44,17 @@ namespace PRN231_UI.Controllers
         }
         public IActionResult Update()
         {
+            return Redirect("/Index");
+        }
+        public IActionResult Create()
+        {
 
-            return View();
+            return Redirect("/Index");
+        }
+        public IActionResult Delete()
+        {
+
+            return Redirect("/Index");
         }
     }
 }

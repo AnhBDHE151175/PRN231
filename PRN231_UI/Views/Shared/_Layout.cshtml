@@ -220,7 +220,6 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-
                         <!-- Nav Item - Messages -->
 
                         <div class="topbar-divider d-none d-sm-block"></div>
@@ -306,6 +305,11 @@
         </div>
     </div>
 
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
