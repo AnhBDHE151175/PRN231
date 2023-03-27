@@ -32,7 +32,7 @@ namespace PRN231.Controllers
             return await _context.Candidates.Include(x => x.Department)
                 .AsQueryable()
                 .Where(x => name.IsNullOrEmpty() || x.FirstName.Contains(name))
-                .Where(x => departmentId == null || x.DepartmentId == departmentId)
+                .Where(x => departmentId == 0 || x.DepartmentId == departmentId)
                 .Where(x => phone.IsNullOrEmpty() || x.PhoneNumber.Contains(phone))
                 .Where(x => email.IsNullOrEmpty() || x.Email.Contains(email))
                 .Where(x => hireDate == null || x.HireDate.Equals(hireDate))
