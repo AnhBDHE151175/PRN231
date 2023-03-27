@@ -29,7 +29,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+//testtttt
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
