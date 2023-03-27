@@ -29,7 +29,7 @@ namespace PRN231.Controllers
             {
                 return NotFound();
             }
-            var result = _context.Countries
+            var result = _context.Countries.Include(x => x.Region)
                     .Where(x => name.IsNullOrEmpty() || x.CountryName.ToLower().Contains(name.ToLower()));
             return await result.ToListAsync();
         }

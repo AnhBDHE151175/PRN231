@@ -33,6 +33,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>Salary</th>
                             <th>Hired Date</th>
                             <th>Department</th>
                         </tr>
@@ -45,6 +46,7 @@
                                 <td>@($"{data.FirstName} {data.LastName}")</td>
                                 <td>@data.Email</td>
                                 <td>@data.PhoneNumber</td>
+                                <td>@data.Salary</td>
                                 <td>@data.HireDate.ToString("dd/MM/yyyy")</td>
                                 <td>@data.Department.DepartmentName</td>
                             </tr>
