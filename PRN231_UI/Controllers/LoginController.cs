@@ -24,6 +24,14 @@ namespace PRN231_UI.Controllers
             ViewData["fail"] = TempData["fail"];
             return View();
         }
+        public IActionResult ForgotPass()
+        {
+            return View();
+        }
+        public IActionResult Forgot(string email)
+        {
+            return View();
+        }
 
         public IActionResult Login(string email, string passWord)
         {

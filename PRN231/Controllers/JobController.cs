@@ -6,6 +6,8 @@ using PRN231.DTOs.RequestModels;
 using PRN231.DTOs.ResponseModels;
 using PRN231.Entities;
 using PRN231.Services;
+using System.Net.Mail;
+using System.Text;
 
 namespace PRN231.Controllers
 {
@@ -74,6 +76,37 @@ namespace PRN231.Controllers
             var fullName = data != null ? $"{data.FirstName}{data.LastName}" : "";
 
             return new LoginResponse() { FullName = fullName };
+        }
+        [HttpGet]
+        public async Task<ForgotResponse> Forgot(string email)
+        {
+            //MailMessage mail = new MailMessage();
+
+            //SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
+            //smtpServer.Credentials = new System.Net.NetworkCredential("ducanhbui09@gmail.com", "tflunuwljsdztmpi");
+            //smtpServer.Port = 587;
+            //smtpServer.EnableSsl = true;
+
+            //var newpass = service.generatePassword().Trim();
+
+            //mail.From = new MailAddress("ducanhbui09@gmail.com");
+            //mail.To.Add(email);
+            //mail.Subject = "CONFIRM YOUR ACCOUNT";
+            //mail.Body = "Email: " + email + "\nPassword: " + newpass;
+
+            //var user = await applicationContext.Interviewers.FirstOrDefaultAsync(u => u.Email == email);
+
+            //user.Password = newpass;
+
+            //applicationContext.Interviewers.Update(user);
+            //var save = applicationContext.SaveChanges();
+
+            //smtpServer.Send(mail);
+            
+
+
+            return 1 > 0 ? new ForgotResponse() { Message = "SentFail" } : new ForgotResponse() { Message = "SentFail" };
+
         }
     }
 }

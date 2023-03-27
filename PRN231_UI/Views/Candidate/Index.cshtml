@@ -13,7 +13,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row">
-                <div class="col-6 input-group" style="float: right;">
+                <div class="col-4 input-group" style="float: right;">
                     <div class="form-outline">
                         <input type="search" id="candidate-search" class="form-control" placeholder="Search..." value="@ViewData["SearchName"]" />
                     </div>
@@ -21,79 +21,100 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
-                <h6 class="col-6 m-0 font-weight-bold text-primary"></h6>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Salary</th>
-                            <th>Hired Date</th>
-                            <th>Department</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var data in Model)
-                        {
-                            <tr>
-                                <td>@data.Id</td>
-                                <td>@($"{data.FirstName} {data.LastName}")</td>
-                                <td>@data.Email</td>
-                                <td>@data.PhoneNumber</td>
-                                <td>@data.Salary</td>
-                                <td>@data.HireDate.ToString("dd/MM/yyyy")</td>
-                                <td>@data.Department.DepartmentName</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-                <div style="display:flex;justify-content:center">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                <div class="col-4 input-group" style="float: right;">
+                    <select class="form-select" aria-label="Default select example" name="deId" onchange="log(value)">
+                        @{
+
+                            foreach (var i in ViewBag.Departments)
                             {
-                                <li class="page-item" @(ViewBag.Current == i ? "selected" : "" )><a class="page-link" href="#">@i</a></li>
+                                if (@i.Id == ViewBag.DeID)
+                                {
+                                    <option selected value="@i.Id">@i.DepartmentName</option>
+
+                                }
+                                else
+                                {
+                                    <option value="@i.Id">@i.DepartmentName</option>
+                                }
                             }
-                            <li>
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                        }
+                    </select>
+                </div>
+                <div class="col-4 input-group" style="float: right;">
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Hired Date</th>
+                                    <th>Department</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var data in Model)
+                                {
+                                    <tr>
+                                        <td>@data.Id</td>
+                                        <td>@($"{data.FirstName} {data.LastName}")</td>
+                                        <td>@data.Email</td>
+                                        <td>@data.PhoneNumber</td>
+                                        <td>@data.HireDate.ToString("dd/MM/yyyy")</td>
+                                        <td>@data.Department.DepartmentName</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div style="display:flex;justify-content:center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                                    {
+                                        <li class="page-item" @(ViewBag.Current == i ? "selected" : "" )><a class="page-link" href="#">@i</a></li>
+                                    }
+                                    <li>
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
-    </div>
+        <!-- /.container-fluid -->
+        <script>
+            $(function () {
+                $('button').click(function () {
+                    var name = $('#candidate-search').val();
+                    window.location.href = "/candidate?name=" + name;
+                });
+                $('.page-item').click(function () {
+                    var name = $('#candidate-search').val();
+                    var pageIndex = $(this).text();
 
-</div>
-<!-- /.container-fluid -->
-<script>
-    $(function () {
-        $('button').click(function () {
-            var name = $('#candidate-search').val();
-            window.location.href = "/candidate?name=" + name;
-        });
-        $('.page-item').click(function () {
-            var name = $('#candidate-search').val();
-            var pageIndex = $(this).text();
+                    console.log(name);
+                    console.log(pageIndex);
+                    window.location.href = "/candidate?name=" + name + "&pageIndex=" + pageIndex;
+                });
+            });
+            function log(value) {
+                var name = $('#candidate-search').val();
+                window.location.href = "/candidate?name=" + name + "&deId=" + value;
 
-            console.log(name);
-            console.log(pageIndex);
-            window.location.href = "/candidate?name=" + name + "&pageIndex=" + pageIndex;
-        });
-    });
+            }
 
 
-</script>
+        </script>

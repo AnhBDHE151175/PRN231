@@ -61,4 +61,8 @@ namespace PRN231.DTOs.ResponseModels
     {
         public string? FullName { get; set; }
     }
+    public class ForgotResponse
+    {
+        public string? Message { get; set; }
+    }
 }
