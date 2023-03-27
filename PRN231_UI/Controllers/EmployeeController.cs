@@ -26,7 +26,7 @@ namespace PRN231_UI.Controllers
                 return Redirect("/login/index");
             }
             List<Interviewer> candidates = new();
-            HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + $"{Constants.CANDIDATE_API}?name={name}").Result;
+            HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + $"{Constants.INTERVIEWER_API}?name={name}").Result;
 
             if (response.IsSuccessStatusCode)
             {

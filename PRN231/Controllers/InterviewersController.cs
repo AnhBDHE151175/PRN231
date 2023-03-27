@@ -23,23 +23,29 @@ namespace PRN231.Controllers
 
         // GET: api/Interviewers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Interviewer>>> GetInterviewers(string name)
+        public async Task<ActionResult<IEnumerable<Interviewer>>> GetInterviewers(string? name)
         {
-          if (_context.Interviewers == null)
-          {
-              return NotFound();
-          }
-            return await _context.Interviewers.AsQueryable().Where(x => name.IsNullOrEmpty() || x.FirstName.Contains(name)).ToListAsync();
+            if (_context.Interviewers == null)
+            {
+                return NotFound();
+            }
+            var data = await _context.Interviewers.ToListAsync();
+            if (!string.IsNullOrEmpty(name))
+            {
+                data = data.Where(o => o.FirstName.Contains(name) || o.LastName.Contains(name)).ToList();
+            }
+            return data;
         }
+
 
         // GET: api/Interviewers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Interviewer>> GetInterviewer(int id)
         {
-          if (_context.Interviewers == null)
-          {
-              return NotFound();
-          }
+            if (_context.Interviewers == null)
+            {
+                return NotFound();
+            }
             var interviewer = await _context.Interviewers.FindAsync(id);
 
             if (interviewer == null)
@@ -86,10 +92,10 @@ namespace PRN231.Controllers
         [HttpPost]
         public async Task<ActionResult<Interviewer>> PostInterviewer(Interviewer interviewer)
         {
-          if (_context.Interviewers == null)
-          {
-              return Problem("Entity set 'ApplicationContext.Interviewers'  is null.");
-          }
+            if (_context.Interviewers == null)
+            {
+                return Problem("Entity set 'ApplicationContext.Interviewers'  is null.");
+            }
             _context.Interviewers.Add(interviewer);
             await _context.SaveChangesAsync();
 
