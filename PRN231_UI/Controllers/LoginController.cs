@@ -21,6 +21,7 @@ namespace PRN231_UI.Controllers
         public IActionResult Index()
         {
             ViewData["message"] = TempData["message"];
+            ViewData["fail"] = TempData["fail"];
             return View();
         }
 
@@ -43,6 +44,7 @@ namespace PRN231_UI.Controllers
             {
                 return Redirect("/Home/Index");
             }
+            TempData["fail"] = "Email or Password incorrect!";
             return Redirect("/login/Index");
 
         }

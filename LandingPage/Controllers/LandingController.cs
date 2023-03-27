@@ -57,25 +57,32 @@ namespace LandingPage.Controllers
         }
         public IActionResult Insert(IFormCollection form)
         {
-
-            Candidate request = new Candidate()
+            try
             {
-                FirstName = form["firstName"].ToString(),
-                LastName = form["lastName"].ToString(),
-                PhoneNumber = form["phone"].ToString(),
-                Email = form["email"].ToString(),
-                JobId = Int32.Parse(form["jobId"].ToString()),
-                Salary = Decimal.Parse(form["salary"].ToString()),
-                DepartmentId = Int32.Parse(form["departmentId"].ToString()),
-            };
+                Candidate request = new Candidate()
+                {
+                    FirstName = form["firstName"].ToString(),
+                    LastName = form["lastName"].ToString(),
+                    PhoneNumber = form["phone"].ToString(),
+                    Email = form["email"].ToString(),
+                    JobId = Int32.Parse(form["jobId"].ToString()),
+                    Salary = Decimal.Parse(form["salary"].ToString()),
+                    DepartmentId = Int32.Parse(form["departmentId"].ToString()),
+                };
 
-            StringContent content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
-            HttpResponseMessage response = client.PostAsync(client.BaseAddress + "/Candidates", content).Result;
+                StringContent content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+                HttpResponseMessage response = client.PostAsync(client.BaseAddress + "/Candidates", content).Result;
 
-            var dataString = response.Content.ReadAsStringAsync().Result;
-            var dataObject = JsonConvert.DeserializeObject<bool>(dataString);
+                var dataString = response.Content.ReadAsStringAsync().Result;
+                var dataObject = JsonConvert.DeserializeObject<bool>(dataString);
 
-            return Redirect("/landing/thanks");
+                return Redirect("/landing/thanks");
+            }
+            catch (Exception ex)
+            {
+                return Redirect("/landing/index");
+            }
+
         }
 
         public IActionResult Thanks()
